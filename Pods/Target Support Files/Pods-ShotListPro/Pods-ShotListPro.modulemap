@@ -1,0 +1,6 @@
+framework module Pods_ShotListPro {
+  umbrella header "Pods-ShotListPro-umbrella.h"
+
+  export *
+  module * { export * }
+}
