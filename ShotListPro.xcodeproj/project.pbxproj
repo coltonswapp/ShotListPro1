@@ -7,10 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D1BB9C1253FA3AE002EFC68 /* ShotDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C0253FA3AD002EFC68 /* ShotDetailsViewController.swift */; };
+		1D1BB9C4253FA3C2002EFC68 /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */; };
+		1D1BB9C7253FA3D0002EFC68 /* ShotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */; };
+		1D1BB9CA253FA40E002EFC68 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */; };
+		1D1BB9CD253FA423002EFC68 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9CC253FA423002EFC68 /* TextFieldCell.swift */; };
+		1D1BB9D0253FA44E002EFC68 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */; };
 		74E174A0B688EFED81A025A2 /* Pods_ShotListPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBA70D09507ECE8452EAEAC /* Pods_ShotListPro.framework */; };
-		75039B19253E0EED00852215 /* Models in Resources */ = {isa = PBXBuildFile; fileRef = 75039B18253E0EED00852215 /* Models */; };
-		75039B1D253E0F2600852215 /* Controller in Resources */ = {isa = PBXBuildFile; fileRef = 75039B1B253E0F2600852215 /* Controller */; };
-		75039B1E253E0F2600852215 /* Custom Cells in Resources */ = {isa = PBXBuildFile; fileRef = 75039B1C253E0F2600852215 /* Custom Cells */; };
 		75885054253DFDBF001EFD20 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75885053253DFDBF001EFD20 /* AppDelegate.swift */; };
 		75885056253DFDBF001EFD20 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75885055253DFDBF001EFD20 /* SceneDelegate.swift */; };
 		75885058253DFDBF001EFD20 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75885057253DFDBF001EFD20 /* ViewController.swift */; };
@@ -21,11 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1D1BB9C0253FA3AD002EFC68 /* ShotDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotDetailsViewController.swift; sourceTree = "<group>"; };
+		1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
+		1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotListViewController.swift; sourceTree = "<group>"; };
+		1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
+		1D1BB9CC253FA423002EFC68 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
+		1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		3BBA70D09507ECE8452EAEAC /* Pods_ShotListPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShotListPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652DE8A38517DB6E6EED839C /* Pods-ShotListPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShotListPro.release.xcconfig"; path = "Target Support Files/Pods-ShotListPro/Pods-ShotListPro.release.xcconfig"; sourceTree = "<group>"; };
-		75039B18253E0EED00852215 /* Models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Models; path = ShotListPro/Models; sourceTree = SOURCE_ROOT; };
-		75039B1B253E0F2600852215 /* Controller */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Controller; sourceTree = "<group>"; };
-		75039B1C253E0F2600852215 /* Custom Cells */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Custom Cells"; sourceTree = "<group>"; };
 		75885050253DFDBF001EFD20 /* ShotListPro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShotListPro.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75885053253DFDBF001EFD20 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75885055253DFDBF001EFD20 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +73,34 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		1D1BB9BD253F7779002EFC68 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1D1BB9D2253FA4B1002EFC68 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				75885057253DFDBF001EFD20 /* ViewController.swift */,
+				1D1BB9C0253FA3AD002EFC68 /* ShotDetailsViewController.swift */,
+				1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */,
+				1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */,
+				1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1D1BB9D3253FA4B7002EFC68 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */,
+				1D1BB9CC253FA423002EFC68 /* TextFieldCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		75885047253DFDBF001EFD20 = {
 			isa = PBXGroup;
 			children = (
@@ -88,12 +122,11 @@
 		75885052253DFDBF001EFD20 /* ShotListPro */ = {
 			isa = PBXGroup;
 			children = (
-				75039B1B253E0F2600852215 /* Controller */,
-				75039B1C253E0F2600852215 /* Custom Cells */,
-				75039B18253E0EED00852215 /* Models */,
+				1D1BB9D2253FA4B1002EFC68 /* Views */,
+				1D1BB9D3253FA4B7002EFC68 /* Cells */,
+				1D1BB9BD253F7779002EFC68 /* Models */,
 				75885053253DFDBF001EFD20 /* AppDelegate.swift */,
 				75885055253DFDBF001EFD20 /* SceneDelegate.swift */,
-				75885057253DFDBF001EFD20 /* ViewController.swift */,
 				75885059253DFDBF001EFD20 /* Main.storyboard */,
 				7588505C253DFDC3001EFD20 /* Assets.xcassets */,
 				7588505E253DFDC3001EFD20 /* LaunchScreen.storyboard */,
@@ -162,10 +195,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				75039B19253E0EED00852215 /* Models in Resources */,
 				75885069253DFE9D001EFD20 /* GoogleService-Info.plist in Resources */,
-				75039B1E253E0F2600852215 /* Custom Cells in Resources */,
-				75039B1D253E0F2600852215 /* Controller in Resources */,
 				75885060253DFDC3001EFD20 /* LaunchScreen.storyboard in Resources */,
 				7588505D253DFDC3001EFD20 /* Assets.xcassets in Resources */,
 				7588505B253DFDBF001EFD20 /* Main.storyboard in Resources */,
@@ -221,9 +251,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D1BB9CA253FA40E002EFC68 /* AddProjectViewController.swift in Sources */,
 				75885058253DFDBF001EFD20 /* ViewController.swift in Sources */,
+				1D1BB9C1253FA3AE002EFC68 /* ShotDetailsViewController.swift in Sources */,
+				1D1BB9C7253FA3D0002EFC68 /* ShotListViewController.swift in Sources */,
+				1D1BB9D0253FA44E002EFC68 /* ProjectCell.swift in Sources */,
 				75885054253DFDBF001EFD20 /* AppDelegate.swift in Sources */,
 				75885056253DFDBF001EFD20 /* SceneDelegate.swift in Sources */,
+				1D1BB9C4253FA3C2002EFC68 /* ProjectDetailsViewController.swift in Sources */,
+				1D1BB9CD253FA423002EFC68 /* TextFieldCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
