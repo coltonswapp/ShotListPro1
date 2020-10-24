@@ -22,17 +22,11 @@ class ProjectController {
     // MARK: - Crud Functions
     
     // ADDING/CREATING A PROJECT
-    func createProject(projectTitle: String) {
-        let newProject = Project(projectTitle: projectTitle, clientName: "-", projectDeadline: Date(), projectColor: "-", projectCreator: "Me")
-        
-        let projectToAdd = db.collection("projects").document(newProject.projectID)
-        projectToAdd.setData(["projectTitle": newProject.projectTitle,
-                              "client": newProject.clientName,
-                              "projectDeadline": newProject.projectDeadline,
-                              "projectColor": newProject.projectColor,
-                              "projectCreator": newProject.projectCreator,
-                              "projectID": newProject.projectID])
-        projects.append(newProject)
+    func createProject(projectDict: [String : Any]) {
+        print(projectDict)
+        let projectToAdd = db.collection("projects").document(projectDict["projectID"] as? String ?? "")
+        projectToAdd.setData(projectDict)
+        //projects.append(project)
     }
     
     // FETCH PROJECTS -- For now, fetching all. Eventually, to fetch all projects whos' "projectCreator" field matches the current user's UserID. As well as all projects whos' "collaborators" array contains the currentUser's UserID.
@@ -42,13 +36,13 @@ class ProjectController {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(false)
             }
-            
+            self.projects.removeAll()
             if let snapshot = snapshot {
                 for doc in snapshot.documents {
                     
                     let projectData = doc.data()
                     let projectTitle = projectData["projectTitle"] as? String ?? ""
-                    let client = projectData["client"] as? String ?? ""
+                    let client = projectData["clientName"] as? String ?? ""
                     let projectDeadline: Date = Timestamp.dateValue(projectData["projectDeadline"] as! Timestamp)()
                     let projectColor = projectData["projectColor"] as? String ?? ""
                     let projectCreator = projectData["projectCreator"] as? String ?? ""

@@ -14,10 +14,10 @@ class Shot {
     var shotNotes: String
     var cameraForShot: String
     var lensForShot: String
-    
     var shotLength: String
     var shotMood: String
     var numOfShots: String
+    
     var shotSection: String
     var shotID: String
     
