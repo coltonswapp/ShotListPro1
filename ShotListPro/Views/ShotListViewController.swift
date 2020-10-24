@@ -18,14 +18,16 @@ class ShotViewController : UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
+        self.title = "Shots"
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Details", style: .plain, target: self, action: #selector(ShotViewController.editProject))
 
-
+        self.tableView.register(ShotCell.self, forCellReuseIdentifier: "ShotCell")
         self.tableView.separatorColor = UIColor.clear
+        self.tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 210
+        return 175
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -33,7 +35,12 @@ class ShotViewController : UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return ProjectCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "ShotCell") as? ShotCell else { return UITableViewCell()}
+        
+        cell.shot = Shot(shotTitle: "Shot", shotIsComplete: false, shotNotes: "", cameraForShot: "", lensForShot: "", shotLength: "", shotMood: "Slow", numOfShots: "", shotSection: "Intro", shotID: "")
+        cell.updateConstraints()
+        
+        return cell
     }
     
     
