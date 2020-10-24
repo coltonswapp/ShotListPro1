@@ -54,15 +54,19 @@ class ViewController: UITableViewController {
             fatalError("Hello")
         }
         let currentInfo = ProjectController.sharedInstance.projects[indexPath.row]
-        cell.updateConstraints()
         cell.projectTitle = currentInfo.projectTitle
         cell.company = currentInfo.clientName
         cell.date = currentInfo.projectDeadline.toString()
         cell.numberOfShots = "0"
         cell.percentage = "45%"
+        cell.updateConstraints()
         return cell
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tableView.reloadData()
+    }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
