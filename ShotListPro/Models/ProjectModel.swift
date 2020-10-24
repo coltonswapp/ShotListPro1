@@ -14,6 +14,10 @@ class Project {
     var projectDeadline: Date
     var projectColor: String
     var projectCreator: String
+    
+    
+    //ignore these ones
+    var numberOfVariablesToIgnore = 3
     var projectID: String
     var projectShots: [Shot]
     
