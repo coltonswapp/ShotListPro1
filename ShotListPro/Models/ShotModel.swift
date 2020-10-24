@@ -17,7 +17,6 @@ class Shot {
     var shotLength: String
     var shotMood: String
     var numOfShots: String
-    
     var shotSection: String
     var shotID: String
     

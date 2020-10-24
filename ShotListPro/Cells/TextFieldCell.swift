@@ -37,14 +37,11 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
     
     var datePicker : UIDatePicker = {
         var datePicker = UIDatePicker()
+        datePicker.preferredDatePickerStyle = .compact
+        datePicker.datePickerMode = .date
         return datePicker
     }()
     
-    var divider : UIView = {
-        var view = UIView()
-        view.backgroundColor = UIColor(named: "grey")
-        return view
-    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -56,48 +53,42 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
         
         contentTextField.delegate = self
         
-        self.addSubview(titleLbl)
-        self.addSubview(divider)
+        self.contentView.addSubview(titleLbl)
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
-        titleLbl.leftAnchor.constraint(equalTo: self.leftAnchor, constant: 10).isActive = true
-        titleLbl.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        titleLbl.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-        titleLbl.rightAnchor.constraint(equalTo: self.divider.leftAnchor, constant: 10).isActive = true
-        titleLbl.widthAnchor.constraint(equalToConstant: 200).isActive = true
-        
-        divider.translatesAutoresizingMaskIntoConstraints = false
-        divider.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-        divider.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-        divider.widthAnchor.constraint(equalToConstant: 1).isActive = true
-        
+        titleLbl.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true
+        titleLbl.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
+        titleLbl.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true
+        titleLbl.heightAnchor.constraint(equalToConstant: 40).isActive = true
+
         if result is String {
             self.addSubview(contentTextField)
             result = contentTextField.text
             contentTextField.translatesAutoresizingMaskIntoConstraints = false
-            contentTextField.leftAnchor.constraint(equalTo: self.divider.rightAnchor, constant: 10).isActive = true
-            contentTextField.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
-            contentTextField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 10).isActive = true
-            contentTextField.rightAnchor.constraint(equalTo: self.rightAnchor, constant: 10).isActive = true
+            contentTextField.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true
+            contentTextField.topAnchor.constraint(equalTo: self.titleLbl.bottomAnchor, constant: 10).isActive = true
+            contentTextField.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
+            contentTextField.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true
+            contentTextField.heightAnchor.constraint(equalToConstant: 40).isActive = true
         } else if result is Date {
             self.addSubview(datePicker)
             result = datePicker.date
             datePicker.translatesAutoresizingMaskIntoConstraints = false
-            datePicker.leftAnchor.constraint(equalTo: self.divider.rightAnchor, constant: 10).isActive = true
-            datePicker.topAnchor.constraint(equalTo: self.topAnchor, constant: 10).isActive = true
+            datePicker.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true
+            datePicker.topAnchor.constraint(equalTo: self.titleLbl.bottomAnchor, constant: 10).isActive = true
             datePicker.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
-            datePicker.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10).isActive = true
+            datePicker.heightAnchor.constraint(equalToConstant: 40).isActive = true
             datePicker.addTarget(self, action: #selector(self.datePickerChanged(picker:)), for: .valueChanged)
         }
     }
+
     
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        self.delegate?.valueDidChange(key: self.key, value: self.result)
-    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        self.delegate?.valueDidChange(key: self.key, value: textField.text)
+        print(textField.text)
         return true
     }
-    
+
     @objc func datePickerChanged(picker: UIDatePicker) {
         self.delegate?.valueDidChange(key: self.key, value: picker.date)
     }

@@ -31,7 +31,7 @@ class ProjectController {
     
     // FETCH PROJECTS -- For now, fetching all. Eventually, to fetch all projects whos' "projectCreator" field matches the current user's UserID. As well as all projects whos' "collaborators" array contains the currentUser's UserID.
     func fetchAllProjects(completion: @escaping (Bool) -> Void) {
-        db.collection("projects").addSnapshotListener { (snapshot, error) in
+        db.collection("projects").order(by: "projectDeadline", descending: false).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(false)
@@ -47,8 +47,9 @@ class ProjectController {
                     let projectColor = projectData["projectColor"] as? String ?? ""
                     let projectCreator = projectData["projectCreator"] as? String ?? ""
                     let projectID = projectData["projectID"] as? String ?? ""
+                    let notes = projectData["notes"] as? String ?? ""
                     
-                    let project = Project(projectTitle: projectTitle, clientName: client, projectDeadline: projectDeadline, projectColor: projectColor, projectCreator: projectCreator, projectID: projectID)
+                    let project = Project(projectTitle: projectTitle, clientName: client, projectDeadline: projectDeadline, projectColor: projectColor, projectCreator: projectCreator, projectID: projectID, projectNotes: notes)
                     
                     ProjectController.sharedInstance.projects.append(project)
                 }

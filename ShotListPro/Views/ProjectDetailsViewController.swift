@@ -14,7 +14,7 @@ class ProjectDetailsViewController :  UITableViewController {
     }
     
     
-    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "")
+    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectNotes: "")
     var elements : Mirror?
     var array = [Int : [String : Any]]()
     

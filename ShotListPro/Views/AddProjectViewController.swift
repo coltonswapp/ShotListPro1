@@ -9,13 +9,12 @@ import Foundation
 import UIKit
 
 class AddProjectViewController :  UITableViewController, TextFieldCellDelegate {
+    
     func valueDidChange(key: String, value: Any) {
         projectDict[key] = value
     }
     
-    
-    
-    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "")
+    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectNotes: "")
     var projectDict = [String : Any]()
     var elements : Mirror?
     var array = [Int : [String : Any]]()
@@ -35,9 +34,10 @@ class AddProjectViewController :  UITableViewController, TextFieldCellDelegate {
         self.tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
         
         self.view.backgroundColor = UIColor.white
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(ShotViewController.editProject))
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ShotViewController.editProject))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(AddProjectViewController.cancel))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(AddProjectViewController.editProject))
         self.tableView.separatorColor = UIColor.clear
+        self.tableView.allowsSelection = false
         self.navigationController?.navigationBar.backgroundColor = .white
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.prefersLargeTitles = true
@@ -81,7 +81,7 @@ class AddProjectViewController :  UITableViewController, TextFieldCellDelegate {
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 100
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
