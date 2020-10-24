@@ -17,6 +17,7 @@ class Project {
     
     //ignore these ones
     var numberOfVariablesToIgnore = 4
+    var projectCreatedAt = Date()
     var projectCreator: String
     var projectID: String
     var projectShots: [Shot]

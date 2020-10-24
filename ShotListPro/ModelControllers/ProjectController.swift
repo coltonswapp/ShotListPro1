@@ -24,8 +24,10 @@ class ProjectController {
     // ADDING/CREATING A PROJECT
     func createProject(projectDict: [String : Any]) {
         print(projectDict)
-        let projectToAdd = db.collection("projects").document(projectDict["projectID"] as? String ?? "")
-        projectToAdd.setData(projectDict)
+        var finalProject = projectDict
+        finalProject["projectCreatedAt"] = Date()
+        let projectToAdd = db.collection("projects").document(finalProject["projectID"] as? String ?? "")
+        projectToAdd.setData(finalProject)
         //projects.append(project)
     }
     
