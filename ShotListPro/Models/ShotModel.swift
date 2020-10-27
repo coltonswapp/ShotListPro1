@@ -10,13 +10,16 @@ import UIKit
 class Shot {
     
     var shotTitle: String
-    var shotIsComplete: Bool = false
     var shotNotes: String
-    var cameraForShot: String
-    var lensForShot: String
+    var cameraUsed: String
+    var cameraLens: String
     var shotLength: String
     var shotMood: String
-    var numOfShots: String
+    var shotsNeeded: String
+    
+    //variable to ignore
+    var numberOfVariablesToIgnore = 4
+    var shotIsComplete: Bool = false
     var shotSection: String
     var shotID: String
     
@@ -25,11 +28,11 @@ class Shot {
         self.shotTitle = shotTitle
         self.shotIsComplete = shotIsComplete
         self.shotNotes = shotNotes
-        self.cameraForShot = cameraForShot
-        self.lensForShot = lensForShot
+        self.cameraUsed = cameraForShot
+        self.cameraLens = lensForShot
         self.shotLength = shotLength
         self.shotMood = shotMood
-        self.numOfShots = numOfShots
+        self.shotsNeeded = numOfShots
         self.shotSection = shotSection
         self.shotID = shotID
     }

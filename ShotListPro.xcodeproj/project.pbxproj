@@ -156,8 +156,8 @@
 				75885059253DFDBF001EFD20 /* Main.storyboard */,
 				7588505C253DFDC3001EFD20 /* Assets.xcassets */,
 				7588505E253DFDC3001EFD20 /* LaunchScreen.storyboard */,
-				75885061253DFDC3001EFD20 /* Info.plist */,
 				75885068253DFE9D001EFD20 /* GoogleService-Info.plist */,
+				75885061253DFDC3001EFD20 /* Info.plist */,
 			);
 			path = ShotListPro;
 			sourceTree = "<group>";

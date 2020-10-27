@@ -14,14 +14,14 @@ class ProjectDetailsViewController :  UITableViewController {
     }
     
     
-    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectNotes: "")
+    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectShots: 0, projectNotes: "")
     var elements : Mirror?
     var array = [Int : [String : Any]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ShotViewController.editProject))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(ProjectDetailsViewController.editProject))
         self.tableView.separatorColor = UIColor.clear
         
         self.navigationController?.navigationBar.backgroundColor = .white
