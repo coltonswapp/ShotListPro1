@@ -10,12 +10,11 @@ import UIKit
 class ShotCell: UITableViewCell {
     
     var shot : Shot = Shot(shotTitle: "", shotIsComplete: false, shotNotes: "", cameraForShot: "", lensForShot: "", shotLength: "", shotMood: "", numOfShots: "", shotSection: "", shotID: "")
+    var projectId : String?
     var themeColor = UIColor(named: "grey")
     
-    
-    
-    var background: UIView = {
-        let view = UIView()
+    var background: UIButton = {
+        let view = UIButton()
         view.backgroundColor = UIColor(named: "grey")
         view.layer.cornerRadius = 10
         return view
@@ -87,7 +86,23 @@ class ShotCell: UITableViewCell {
         self.setupConstraints()
     }
     
+    @objc func select(sender : UIButton) {
+        shot.shotIsComplete.toggle()
+        circle.backgroundColor = shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
+        print(projectId, shot.shotID, shot.shotIsComplete)
+        ShotController.sharedInstance.completeShot(projectId: projectId ?? "", shotId: shot.shotID , bool: shot.shotIsComplete)
+    }
+    
     func setupConstraints() {
+        
+        
+        shotTitleLbl.text = shot.shotTitle
+        shotNotesLbl.text = shot.shotNotes
+        gearLbl.text = shot.cameraLens + " " + shot.cameraUsed
+        moodLabel.text = shot.shotMood
+        shotSectionLbl.text = shot.shotSection
+        numOfShotsLbl.text = shot.shotsNeeded
+        shotLengthLbl.text = shot.shotLength
         
         self.contentView.addSubview(background)
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -95,14 +110,14 @@ class ShotCell: UITableViewCell {
         background.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
         background.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         background.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
-        
+        background.addTarget(self, action: #selector(ShotCell.select(sender:)), for: .touchUpInside)
         
         self.background.addSubview(shotTitleLbl)
         shotTitleLbl.translatesAutoresizingMaskIntoConstraints = false
         shotTitleLbl.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 10).isActive = true
         shotTitleLbl.topAnchor.constraint(equalTo: background.topAnchor, constant: 10).isActive = true
         shotTitleLbl.heightAnchor.constraint(equalToConstant: 45).isActive = true
-        
+        shotTitleLbl.backgroundColor = themeColor
         
         self.background.addSubview(shotNotesLbl)
         shotNotesLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -120,6 +135,7 @@ class ShotCell: UITableViewCell {
         moodLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 10).isActive = true
         moodLabel.topAnchor.constraint(equalTo: gearLbl.bottomAnchor, constant: 10).isActive = true
         moodLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10).isActive = true
+        moodLabel.backgroundColor = themeColor
         
         self.background.addSubview(shotSectionLbl)
         shotSectionLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -133,11 +149,11 @@ class ShotCell: UITableViewCell {
         
         self.background.addSubview(circle)
         circle.translatesAutoresizingMaskIntoConstraints = false
-        circle.backgroundColor = .green
         circle.centerYAnchor.constraint(equalTo: background.centerYAnchor, constant: 0).isActive = true
         circle.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -10).isActive = true
         circle.heightAnchor.constraint(equalToConstant: 30).isActive = true
         circle.widthAnchor.constraint(equalToConstant: 30).isActive = true
+        circle.backgroundColor = shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
         
         self.background.addSubview(shotLengthLbl)
         shotLengthLbl.translatesAutoresizingMaskIntoConstraints = false

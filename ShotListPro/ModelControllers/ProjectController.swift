@@ -26,9 +26,7 @@ class ProjectController {
         print(projectDict)
         var finalProject = projectDict
         finalProject["projectCreatedAt"] = Date()
-        let projectToAdd = db.collection("projects").document(finalProject["projectID"] as? String ?? "")
-        projectToAdd.setData(finalProject)
-        //projects.append(project)
+        db.collection("projects").addDocument(data: finalProject)
     }
     
     // FETCH PROJECTS -- For now, fetching all. Eventually, to fetch all projects whos' "projectCreator" field matches the current user's UserID. As well as all projects whos' "collaborators" array contains the currentUser's UserID.
@@ -48,18 +46,20 @@ class ProjectController {
                     let projectDeadline: Date = Timestamp.dateValue(projectData["projectDeadline"] as! Timestamp)()
                     let projectColor = projectData["projectColor"] as? String ?? ""
                     let projectCreator = projectData["projectCreator"] as? String ?? ""
-                    let projectID = projectData["projectID"] as? String ?? ""
+                    let projectID = doc.documentID
                     let notes = projectData["notes"] as? String ?? ""
                     
-                    let project = Project(projectTitle: projectTitle, clientName: client, projectDeadline: projectDeadline, projectColor: projectColor, projectCreator: projectCreator, projectID: projectID, projectNotes: notes)
-                    
+                    let project = Project(projectTitle: projectTitle, clientName: client, projectDeadline: projectDeadline, projectColor: projectColor, projectCreator: projectCreator, projectID: projectID, projectShots: 0, projectNotes: notes)
                     ProjectController.sharedInstance.projects.append(project)
+                    self.db.collection("projects").document(doc.documentID).collection("shots").addSnapshotListener { (snapshot, error) in
+                        ProjectController.sharedInstance.projects.filter({$0.projectID == project.projectID}).first?.projectShots = snapshot?.count ?? 0
+                        completion(true)
+                    }
                 }
-                completion(true)
             }
         }
     }
-    
+
     // EDITING/UPDATING A PROJECT
     func updateProject(project: Project?) {
         guard let projectToUpdate = project else { return }

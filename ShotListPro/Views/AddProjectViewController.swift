@@ -14,7 +14,7 @@ class AddProjectViewController :  UITableViewController, TextFieldCellDelegate {
         projectDict[key] = value
     }
     
-    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectNotes: "")
+    var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectShots: 0, projectNotes: "")
     var projectDict = [String : Any]()
     var elements : Mirror?
     var array = [Int : [String : Any]]()
@@ -48,22 +48,23 @@ class AddProjectViewController :  UITableViewController, TextFieldCellDelegate {
         elements = Mirror(reflecting: project)
         if elements != nil {
             for (index, element) in elements!.children.enumerated() {
-                if let propertyName = element.label as String? {
-                    projectDict[element.label ?? ""] = element.value
-                    let readableValue = propertyName.first(where: {$0.isUppercase == true})
-                    let splitNames = propertyName.split(separator: Character(extendedGraphemeClusterLiteral: readableValue!))
-                    let firstName = splitNames.first?.lowercased().capitalizingFirstLetter() ?? ""
-                    let secondName = "\(readableValue!)\(splitNames.last ?? "")".lowercased().capitalizingFirstLetter()
-                    let name = String(firstName + " " + secondName)
-                    array[index] = [name : element.value]
+                if index < (elements?.children.count ?? 0) - project.numberOfVariablesToIgnore {
+                    if let propertyName = element.label as String? {
+                        projectDict[element.label ?? ""] = element.value
+                        let readableValue = propertyName.first(where: {$0.isUppercase == true})
+                        let splitNames = propertyName.split(separator: Character(extendedGraphemeClusterLiteral: readableValue!))
+                        let firstName = splitNames.first?.lowercased().capitalizingFirstLetter() ?? ""
+                        let secondName = "\(readableValue!)\(splitNames.last ?? "")".lowercased().capitalizingFirstLetter()
+                        let name = String(firstName + " " + secondName)
+                        array[index] = [name : element.value]
+                    }
                 }
             }
         }
-        
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return array.count - project.numberOfVariablesToIgnore
+        return array.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,3 +89,4 @@ class AddProjectViewController :  UITableViewController, TextFieldCellDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
     }
 }
+

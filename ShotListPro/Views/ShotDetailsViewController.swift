@@ -23,24 +23,25 @@ extension String {
 class ShotDetailsViewController :  UITableViewController, TextFieldCellDelegate {
     
     func valueDidChange(key: String, value: Any) {
-        projectDict[key] = value
+        shotDict[key] = value
     }
     
     var shot = Shot(shotTitle: "", shotIsComplete: false, shotNotes: "", cameraForShot: "", lensForShot: "", shotLength: "", shotMood: "", numOfShots: "", shotSection: "", shotID: "")
-    var projectDict = [String : Any]()
+    var shotDict = [String : Any]()
     var elements : Mirror?
     var array = [Int : [String : Any]]()
-    
+    var currentProject : Project?
     @objc func editProject(sender: UIBarButtonItem) {
+        ShotController.sharedInstance.createShot(shotDict: shotDict)
         self.dismiss(animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
-        
+        self.tableView.allowsSelection = false
         self.view.backgroundColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(ShotViewController.editProject))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(ShotDetailsViewController.editProject))
         self.tableView.separatorColor = UIColor.clear
         self.tableView.allowsSelection = false
         
@@ -51,17 +52,20 @@ class ShotDetailsViewController :  UITableViewController, TextFieldCellDelegate 
         self.tableView.showsVerticalScrollIndicator = false
         
         elements = Mirror(reflecting: shot)
+        shotDict["projectId"] = currentProject?.projectID
         if elements != nil {
             for (index, element) in elements!.children.enumerated() {
-                if let propertyName = element.label as String? {
-                    projectDict[element.label ?? ""] = element.value
-                    let readableValue = propertyName.first(where: {$0.isUppercase == true})
-                    let splitNames = propertyName.split(separator: Character(extendedGraphemeClusterLiteral: readableValue!))
-                    let firstName = splitNames.first?.lowercased().capitalizingFirstLetter() ?? ""
-                    let secondName = "\(readableValue!)\(splitNames.last ?? "")".lowercased().capitalizingFirstLetter()
-                    let name = String(firstName + " " + secondName)
-                    print(name)
-                    array[index] = [name : element.value]
+                if index < (elements?.children.count ?? 0) - shot.numberOfVariablesToIgnore {
+                    if let propertyName = element.label as String? {
+                        shotDict[element.label ?? ""] = element.value
+                        let readableValue = propertyName.first(where: {$0.isUppercase == true})
+                        let splitNames = propertyName.split(separator: Character(extendedGraphemeClusterLiteral: readableValue!))
+                        let firstName = splitNames.first?.lowercased().capitalizingFirstLetter() ?? ""
+                        let secondName = "\(readableValue!)\(splitNames.last ?? "")".lowercased().capitalizingFirstLetter()
+                        let name = String(firstName + " " + secondName)
+                        print(name)
+                        array[index] = [name : element.value]
+                    }
                 }
             }
         }
@@ -90,7 +94,4 @@ class ShotDetailsViewController :  UITableViewController, TextFieldCellDelegate 
         return 100
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-    }
 }

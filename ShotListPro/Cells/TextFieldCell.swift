@@ -83,10 +83,9 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
 
     
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textFieldDidEndEditing(_ textField: UITextField) {
         self.delegate?.valueDidChange(key: self.key, value: textField.text)
         print(textField.text)
-        return true
     }
 
     @objc func datePickerChanged(picker: UIDatePicker) {

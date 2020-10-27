@@ -33,6 +33,7 @@ class ProjectCell : UITableViewCell {
     
     var companyLbl : CustomLabel = {
         let label = CustomLabel()
+        
         label.layer.cornerRadius = 5
         label.clipsToBounds = true
         label.text = "Something"
@@ -98,7 +99,6 @@ class ProjectCell : UITableViewCell {
         projectTitleLbl.translatesAutoresizingMaskIntoConstraints = false
         projectTitleLbl.leadingAnchor.constraint(equalTo: self.background.leadingAnchor, constant: 10).isActive = true
         projectTitleLbl.topAnchor.constraint(equalTo: self.background.topAnchor, constant: 10).isActive = true
-        projectTitleLbl.trailingAnchor.constraint(equalTo: self.background.trailingAnchor, constant: -10).isActive = true
         projectTitleLbl.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //Setup Company Label
@@ -106,7 +106,6 @@ class ProjectCell : UITableViewCell {
         companyLbl.translatesAutoresizingMaskIntoConstraints = false
         companyLbl.leadingAnchor.constraint(equalTo: self.background.leadingAnchor, constant: 10).isActive = true
         companyLbl.topAnchor.constraint(equalTo: self.projectTitleLbl.bottomAnchor, constant: 10).isActive = true
-        companyLbl.trailingAnchor.constraint(equalTo: self.background.trailingAnchor, constant: -10).isActive = true
         companyLbl.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         //Setup Date Label
@@ -114,7 +113,6 @@ class ProjectCell : UITableViewCell {
         dateLbl.translatesAutoresizingMaskIntoConstraints = false
         dateLbl.leadingAnchor.constraint(equalTo: self.background.leadingAnchor, constant: 10).isActive = true
         dateLbl.topAnchor.constraint(equalTo: self.companyLbl.bottomAnchor, constant: 10).isActive = true
-        dateLbl.trailingAnchor.constraint(equalTo: self.background.trailingAnchor, constant: -10).isActive = true
         dateLbl.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         //Setup Percentage Label
@@ -124,7 +122,6 @@ class ProjectCell : UITableViewCell {
         percentageLbl.topAnchor.constraint(equalTo: self.dateLbl.bottomAnchor, constant: 10).isActive = true
         percentageLbl.bottomAnchor.constraint(equalTo: self.background.bottomAnchor, constant: -10).isActive = true
         percentageLbl.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        percentageLbl.widthAnchor.constraint(equalToConstant: 60).isActive = true
         
         //Setup Number of Shots Label
         self.background.addSubview(numberOfShotsLbl)
@@ -133,6 +130,5 @@ class ProjectCell : UITableViewCell {
         numberOfShotsLbl.trailingAnchor.constraint(equalTo: self.background.trailingAnchor, constant: -10).isActive = true
         numberOfShotsLbl.bottomAnchor.constraint(equalTo: self.background.bottomAnchor, constant : -10).isActive = true
         numberOfShotsLbl.heightAnchor.constraint(equalToConstant: 30).isActive = true
-        numberOfShotsLbl.widthAnchor.constraint(equalToConstant: 40).isActive = true
     }
 }

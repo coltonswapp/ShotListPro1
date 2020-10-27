@@ -16,13 +16,13 @@ class Project {
     var projectNotes: String
     
     //ignore these ones
-    var numberOfVariablesToIgnore = 4
+    var numberOfVariablesToIgnore = 5
     var projectCreatedAt = Date()
     var projectCreator: String
     var projectID: String
-    var projectShots: [Shot]
+    var projectShots: Int
     
-    init(projectTitle: String, clientName: String, projectDeadline: Date, projectColor: String, projectCreator: String, projectID: String = UUID().uuidString, projectShots: [Shot] = [], projectNotes : String) {
+    init(projectTitle: String, clientName: String, projectDeadline: Date, projectColor: String, projectCreator: String, projectID: String = UUID().uuidString, projectShots: Int, projectNotes : String) {
         
         self.projectTitle = projectTitle
         self.clientName = clientName
