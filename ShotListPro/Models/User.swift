@@ -14,7 +14,7 @@ class User {
     var userID: String
     var isFTFMember: Bool
     
-    init(name: String, email: String, userID: String = UUID().uuidString, isFTFMember: Bool = false) {
+    init(name: String, email: String, userID: String, isFTFMember: Bool = false) {
         
         self.name = name
         self.email = email

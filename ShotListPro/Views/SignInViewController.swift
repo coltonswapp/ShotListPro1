@@ -29,6 +29,7 @@ class SignInViewController: UIViewController {
         Auth.auth().signIn(withEmail: emailText, password: passwordText) { (user, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+                self.presentError1(localizedError: error as NSError)
                 // Present some sort of could not log in alert
             }
             if let user = user?.user {
@@ -48,6 +49,7 @@ class SignInViewController: UIViewController {
                         self.passwordTextField.text = nil
                     case .failure(let error):
                         print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
+
                     }
                 }
             }

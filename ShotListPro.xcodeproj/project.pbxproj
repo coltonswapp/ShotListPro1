@@ -19,6 +19,7 @@
 		7535C1D42549E95300C4215C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1D32549E95300C4215C /* SignInViewController.swift */; };
 		7535C1D72549E96B00C4215C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1D62549E96B00C4215C /* SignUpViewController.swift */; };
 		7535C1DB2549EB6E00C4215C /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1DA2549EB6E00C4215C /* LoginError.swift */; };
+		7535C1DF254A26E400C4215C /* UIKitExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1DE254A26E400C4215C /* UIKitExtensions.swift */; };
 		7557EC2825411642008BEE53 /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557EC2725411642008BEE53 /* ProjectModel.swift */; };
 		7557EC2B25411845008BEE53 /* ShotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557EC2A25411845008BEE53 /* ShotModel.swift */; };
 		7557EC2F2541225A008BEE53 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557EC2E2541225A008BEE53 /* ProjectController.swift */; };
@@ -48,6 +49,7 @@
 		7535C1D32549E95300C4215C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		7535C1D62549E96B00C4215C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		7535C1DA2549EB6E00C4215C /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
+		7535C1DE254A26E400C4215C /* UIKitExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtensions.swift; sourceTree = "<group>"; };
 		7557EC2725411642008BEE53 /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		7557EC2A25411845008BEE53 /* ShotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotModel.swift; sourceTree = "<group>"; };
 		7557EC2E2541225A008BEE53 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
@@ -134,6 +136,7 @@
 			isa = PBXGroup;
 			children = (
 				7535C1DA2549EB6E00C4215C /* LoginError.swift */,
+				7535C1DE254A26E400C4215C /* UIKitExtensions.swift */,
 			);
 			path = "Helpers&Extensions";
 			sourceTree = "<group>";
@@ -305,6 +308,7 @@
 				7535C1DB2549EB6E00C4215C /* LoginError.swift in Sources */,
 				75885058253DFDBF001EFD20 /* ViewController.swift in Sources */,
 				7535C1CE2549E52700C4215C /* LoadingViewController.swift in Sources */,
+				7535C1DF254A26E400C4215C /* UIKitExtensions.swift in Sources */,
 				1D1BB9C1253FA3AE002EFC68 /* ShotDetailsViewController.swift in Sources */,
 				1D1BB9C7253FA3D0002EFC68 /* ShotListViewController.swift in Sources */,
 				7535C1D12549E59300C4215C /* UserController.swift in Sources */,
