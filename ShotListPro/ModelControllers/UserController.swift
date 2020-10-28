@@ -25,9 +25,10 @@ class UserController {
     
     // CREATE A USER
     func createUser(name: String, email: String, userID: String, isFTFMember: Bool) {
-        let newUser = User(name: name, email: email)
+        let newUser = User(name: name, email: email, userID: userID)
         
         db.collection("users").document(newUser.userID).setData(["name" : newUser.name, "email": newUser.email, "userID": newUser.userID, "isFTFMember": newUser.isFTFMember])
+        
         
         self.currentUser = newUser
     }
@@ -42,7 +43,7 @@ class UserController {
             
             if let profile = snapshot?.data() {
                 // Profile was found, create new user
-                let userId = snapshot?.documentID ?? ""
+                let userId = profile["userID"] as? String ?? ""
                 let email = profile["email"] as? String ?? ""
                 let name = profile["name"] as? String ?? ""
                 let isFTFMember = profile["isFTFMember"] as? Bool ?? false
