@@ -29,7 +29,7 @@ class ViewController: UITableViewController {
         
         //Bar Button
         let configuration = UIImage.SymbolConfiguration(pointSize: 20)
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.fill", withConfiguration: configuration), style: .plain, target: self, action: #selector(ViewController.addProject))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "person.crop.circle.fill", withConfiguration: configuration), style: .plain, target: self, action: #selector(ViewController.addProject))
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "plus.circle.fill", withConfiguration: configuration), style: .plain, target: self, action: #selector(ViewController.addProject))
         
         self.tableView.separatorColor = UIColor.clear
