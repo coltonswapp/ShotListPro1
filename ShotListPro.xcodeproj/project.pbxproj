@@ -14,6 +14,11 @@
 		1D1BB9CD253FA423002EFC68 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9CC253FA423002EFC68 /* TextFieldCell.swift */; };
 		1D1BB9D0253FA44E002EFC68 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */; };
 		74E174A0B688EFED81A025A2 /* Pods_ShotListPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBA70D09507ECE8452EAEAC /* Pods_ShotListPro.framework */; };
+		7535C1CE2549E52700C4215C /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1CD2549E52700C4215C /* LoadingViewController.swift */; };
+		7535C1D12549E59300C4215C /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1D02549E59300C4215C /* UserController.swift */; };
+		7535C1D42549E95300C4215C /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1D32549E95300C4215C /* SignInViewController.swift */; };
+		7535C1D72549E96B00C4215C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1D62549E96B00C4215C /* SignUpViewController.swift */; };
+		7535C1DB2549EB6E00C4215C /* LoginError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1DA2549EB6E00C4215C /* LoginError.swift */; };
 		7557EC2825411642008BEE53 /* ProjectModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557EC2725411642008BEE53 /* ProjectModel.swift */; };
 		7557EC2B25411845008BEE53 /* ShotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557EC2A25411845008BEE53 /* ShotModel.swift */; };
 		7557EC2F2541225A008BEE53 /* ProjectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7557EC2E2541225A008BEE53 /* ProjectController.swift */; };
@@ -38,6 +43,11 @@
 		1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
 		3BBA70D09507ECE8452EAEAC /* Pods_ShotListPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShotListPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652DE8A38517DB6E6EED839C /* Pods-ShotListPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShotListPro.release.xcconfig"; path = "Target Support Files/Pods-ShotListPro/Pods-ShotListPro.release.xcconfig"; sourceTree = "<group>"; };
+		7535C1CD2549E52700C4215C /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		7535C1D02549E59300C4215C /* UserController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserController.swift; sourceTree = "<group>"; };
+		7535C1D32549E95300C4215C /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		7535C1D62549E96B00C4215C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		7535C1DA2549EB6E00C4215C /* LoginError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginError.swift; sourceTree = "<group>"; };
 		7557EC2725411642008BEE53 /* ProjectModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectModel.swift; sourceTree = "<group>"; };
 		7557EC2A25411845008BEE53 /* ShotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotModel.swift; sourceTree = "<group>"; };
 		7557EC2E2541225A008BEE53 /* ProjectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectController.swift; sourceTree = "<group>"; };
@@ -103,6 +113,9 @@
 				1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */,
 				1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */,
 				1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */,
+				7535C1CD2549E52700C4215C /* LoadingViewController.swift */,
+				7535C1D32549E95300C4215C /* SignInViewController.swift */,
+				7535C1D62549E96B00C4215C /* SignUpViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,11 +130,20 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		7535C1D92549EB5F00C4215C /* Helpers&Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7535C1DA2549EB6E00C4215C /* LoginError.swift */,
+			);
+			path = "Helpers&Extensions";
+			sourceTree = "<group>";
+		};
 		7557EC2D2541223D008BEE53 /* ModelControllers */ = {
 			isa = PBXGroup;
 			children = (
 				7557EC2E2541225A008BEE53 /* ProjectController.swift */,
 				7557EC3C2544ACE1008BEE53 /* ShotController.swift */,
+				7535C1D02549E59300C4215C /* UserController.swift */,
 			);
 			path = ModelControllers;
 			sourceTree = "<group>";
@@ -147,6 +169,7 @@
 		75885052253DFDBF001EFD20 /* ShotListPro */ = {
 			isa = PBXGroup;
 			children = (
+				7535C1D92549EB5F00C4215C /* Helpers&Extensions */,
 				7557EC2D2541223D008BEE53 /* ModelControllers */,
 				1D1BB9D2253FA4B1002EFC68 /* Views */,
 				1D1BB9D3253FA4B7002EFC68 /* Cells */,
@@ -279,9 +302,13 @@
 			files = (
 				7557EC3A2544ABE7008BEE53 /* User.swift in Sources */,
 				1D1BB9CA253FA40E002EFC68 /* AddProjectViewController.swift in Sources */,
+				7535C1DB2549EB6E00C4215C /* LoginError.swift in Sources */,
 				75885058253DFDBF001EFD20 /* ViewController.swift in Sources */,
+				7535C1CE2549E52700C4215C /* LoadingViewController.swift in Sources */,
 				1D1BB9C1253FA3AE002EFC68 /* ShotDetailsViewController.swift in Sources */,
 				1D1BB9C7253FA3D0002EFC68 /* ShotListViewController.swift in Sources */,
+				7535C1D12549E59300C4215C /* UserController.swift in Sources */,
+				7535C1D72549E96B00C4215C /* SignUpViewController.swift in Sources */,
 				1D1BB9D0253FA44E002EFC68 /* ProjectCell.swift in Sources */,
 				7557EC2F2541225A008BEE53 /* ProjectController.swift in Sources */,
 				7557EC402544D7BE008BEE53 /* ShotCell.swift in Sources */,
@@ -289,6 +316,7 @@
 				7557EC2825411642008BEE53 /* ProjectModel.swift in Sources */,
 				75885054253DFDBF001EFD20 /* AppDelegate.swift in Sources */,
 				75885056253DFDBF001EFD20 /* SceneDelegate.swift in Sources */,
+				7535C1D42549E95300C4215C /* SignInViewController.swift in Sources */,
 				1D1BB9C4253FA3C2002EFC68 /* ProjectDetailsViewController.swift in Sources */,
 				1D1BB9CD253FA423002EFC68 /* TextFieldCell.swift in Sources */,
 				7557EC3D2544ACE1008BEE53 /* ShotController.swift in Sources */,
