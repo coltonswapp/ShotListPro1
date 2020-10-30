@@ -31,8 +31,27 @@ class ShotDetailsViewController :  UITableViewController, TextFieldCellDelegate 
     var elements : Mirror?
     var array = [Int : [String : Any]]()
     var currentProject : Project?
-    @objc func editProject(sender: UIBarButtonItem) {
-        ShotController.sharedInstance.createShot(shotDict: shotDict)
+    
+    // MARK: -Alert Handling
+    func showAlert(error : String) {
+        let alert = UIAlertController(title: "Ooops", message: error, preferredStyle: .alert)
+        alert.addAction(.init(title: "Dismiss", style: .cancel, handler: {_ in
+            alert.dismiss(animated: true, completion: nil)
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    @objc func createShot(sender: UIBarButtonItem) {
+        if shotDict["shotTitle"] as? String != "" {
+            ShotController.sharedInstance.createShot(shotDict: shotDict)
+            self.dismiss(animated: true, completion: nil)
+        } else {
+            self.showAlert(error: "Please enter a title.")
+        }
+    }
+    
+    @objc func cancelShot(sender: UIBarButtonItem) {
         self.dismiss(animated: true, completion: nil)
     }
     
@@ -41,7 +60,8 @@ class ShotDetailsViewController :  UITableViewController, TextFieldCellDelegate 
         self.tableView.register(TextFieldCell.self, forCellReuseIdentifier: "TextFieldCell")
         self.tableView.allowsSelection = false
         self.view.backgroundColor = UIColor.white
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .plain, target: self, action: #selector(ShotDetailsViewController.editProject))
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(ShotDetailsViewController.cancelShot))
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Create", style: .done, target: self, action: #selector(ShotDetailsViewController.createShot))
         self.tableView.separatorColor = UIColor.clear
         self.tableView.allowsSelection = false
         

@@ -12,7 +12,6 @@ class LoadingViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        try? Auth.auth().signOut()
         checkForCurrentUser()
         
     }

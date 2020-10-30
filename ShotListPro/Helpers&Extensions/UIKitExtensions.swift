@@ -6,7 +6,7 @@
 //
 
 import UIKit
-
+import SwiftUI
 extension UIViewController {
     func presentError1(localizedError: NSError) {
         let alertController = UIAlertController(title: "WHOOPS!", message: localizedError.description, preferredStyle: .actionSheet)
@@ -20,5 +20,12 @@ extension UIViewController {
         let dismissAction = UIAlertAction(title: "TRY AGAIN", style: .cancel)
         alertController.addAction(dismissAction)
         present(alertController, animated: true)
+    }
+}
+
+
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }
