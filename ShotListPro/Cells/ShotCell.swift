@@ -86,23 +86,33 @@ class ShotCell: UITableViewCell {
         self.setupConstraints()
     }
     
-    @objc func select(sender : UIButton) {
-        shot.shotIsComplete.toggle()
-        circle.backgroundColor = shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
-        print(projectId, shot.shotID, shot.shotIsComplete)
-        ShotController.sharedInstance.completeShot(projectId: projectId ?? "", shotId: shot.shotID , bool: shot.shotIsComplete)
+    func animateView(_ viewToAnimate : UIView) {
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+            self.circle.backgroundColor = self.shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
+            self.circle.transform = CGAffineTransform(scaleX: 0.7, y: 0.7)
+        }, completion: {_ in
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+                self.circle.backgroundColor = self.shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
+                self.circle.transform = CGAffineTransform(scaleX: 1, y: 1)
+            }, completion: nil)
+        })
     }
     
+    @objc func select(sender : UIButton) {
+        shot.shotIsComplete.toggle()
+        ShotController.sharedInstance.completeShot(projectId: projectId ?? "", shotId: shot.shotID , bool: shot.shotIsComplete)
+        animateView(circle)
+    }
+    
+    // MARK: -Setup Constraints Shots View
     func setupConstraints() {
-        
-        
         shotTitleLbl.text = shot.shotTitle
         shotNotesLbl.text = shot.shotNotes
-        gearLbl.text = shot.cameraLens + " " + shot.cameraUsed
-        moodLabel.text = shot.shotMood
-        shotSectionLbl.text = shot.shotSection
-        numOfShotsLbl.text = shot.shotsNeeded
-        shotLengthLbl.text = shot.shotLength
+        gearLbl.text = shot.cameraLens.string + " " + shot.cameraUsed.string
+        moodLabel.text = shot.shotMood.string
+        shotSectionLbl.text = shot.shotSection.string
+        numOfShotsLbl.text = shot.shotsNeeded.string
+        shotLengthLbl.text = shot.shotLength.string
         
         self.contentView.addSubview(background)
         background.translatesAutoresizingMaskIntoConstraints = false
@@ -121,13 +131,13 @@ class ShotCell: UITableViewCell {
         
         self.background.addSubview(shotNotesLbl)
         shotNotesLbl.translatesAutoresizingMaskIntoConstraints = false
-        shotNotesLbl.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 10).isActive = true
+        shotNotesLbl.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
         shotNotesLbl.topAnchor.constraint(equalTo: shotTitleLbl.bottomAnchor, constant: 10).isActive = true
         
         
         self.background.addSubview(gearLbl)
         gearLbl.translatesAutoresizingMaskIntoConstraints = false
-        gearLbl.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 10).isActive = true
+        gearLbl.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 20).isActive = true
         gearLbl.topAnchor.constraint(equalTo: shotNotesLbl.bottomAnchor, constant: 10).isActive = true
         
         self.background.addSubview(moodLabel)
@@ -135,6 +145,7 @@ class ShotCell: UITableViewCell {
         moodLabel.leadingAnchor.constraint(equalTo: background.leadingAnchor, constant: 10).isActive = true
         moodLabel.topAnchor.constraint(equalTo: gearLbl.bottomAnchor, constant: 10).isActive = true
         moodLabel.bottomAnchor.constraint(equalTo: background.bottomAnchor, constant: -10).isActive = true
+        moodLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         moodLabel.backgroundColor = themeColor
         
         self.background.addSubview(shotSectionLbl)
@@ -153,8 +164,8 @@ class ShotCell: UITableViewCell {
         circle.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -10).isActive = true
         circle.heightAnchor.constraint(equalToConstant: 30).isActive = true
         circle.widthAnchor.constraint(equalToConstant: 30).isActive = true
-        circle.backgroundColor = shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
-        
+        self.circle.backgroundColor = self.shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
+               
         self.background.addSubview(shotLengthLbl)
         shotLengthLbl.translatesAutoresizingMaskIntoConstraints = false
         shotLengthLbl.trailingAnchor.constraint(equalTo: background.trailingAnchor, constant: -10).isActive = true

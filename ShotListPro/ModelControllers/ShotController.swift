@@ -51,7 +51,7 @@ class ShotController {
                     let shotIsComplete = shotData["shotIsComplete"] as? Bool ?? false
                     let shotNotes = shotData["shotNotes"] as? String ?? ""
                     let cameraForShot = shotData["cameraUsed"] as? String ?? ""
-                    let lensForShot = shotData["lensUsed"] as? String ?? ""
+                    let lensForShot = shotData["cameraLens"] as? String ?? ""
                     let shotLength = shotData["shotLength"] as? String ?? ""
                     let shotMood = shotData["shotMood"] as? String ?? ""
                     let numOfShots = shotData["shotsNeeded"] as? String ?? ""

@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class TextFieldCell : UITableViewCell, UITextFieldDelegate {
+class TextFieldCell : UITableViewCell, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+    
     
     var delegate: TextFieldCellDelegate?
     var key : String = ""
@@ -31,7 +32,9 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
         var textField = UITextField()
         textField.placeholder = "Enter Something Here..."
         textField.font = UIFont.systemFont(ofSize: 15, weight: .light)
-        
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
         return textField
     }()
     
@@ -42,16 +45,168 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
         return datePicker
     }()
     
+    var pickerField : UITextField = {
+        var textField = UITextField()
+        textField.text = "Select One"
+        textField.backgroundColor = UIColor(named : "grey")
+        textField.layer.cornerRadius = 10
+        let paddingView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 5, height: 20))
+        textField.leftView = paddingView
+        textField.leftViewMode = .always
+        return textField
+    }()
+    
+    @objc func donePicker(_ sender : UIBarButtonItem) {
+        pickerField.resignFirstResponder()
+    }
+    
+    var pickerView : UIPickerView = {
+        var pickerView = UIPickerView()
+        return pickerView
+    }()
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        
         self.setupConstraints()
         titleLbl.text = self.title
+    }
+    
+    // MARK: -Picker View
+    var cameras = ["Canon", "Sony", "Canon", "Sony", "Canon", "Sony", "Canon", "Sony", "Canon", "Sony"]
+    var lenses = ["Sigma 18-35", "Nifty 50", "40mm"]
+    var length = ["1", "2", "3", "4", "5", "6"]
+    var mood = ["Fast", "Slow"]
+    var needed = ["1", "2", "3", "4", "5"]
+    var sections = ["Intro", "Middle", "End"]
+    
+    var timeMetric = ["Secs", "Mins", "Hours"]
+    var shotsOrTakes = ["Shots", "Takes"]
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if result is Length {
+            return 2
+        } else if result is Needed {
+            return 2
+        } else {
+            return 1
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        if result is Camera {
+            return cameras[row]
+        } else if result is Lens {
+            return lenses[row]
+        } else if result is Length {
+            if component == 0 {
+                return length[row]
+            } else if component == 1 {
+                return timeMetric[row]
+            } else {
+                return "Error"
+            }
+        } else if result is Mood {
+            return mood[row]
+        } else if result is Needed {
+            if component == 0 {
+                return needed[row]
+            } else if component == 1 {
+                return shotsOrTakes[row]
+            } else {
+                return "Error"
+            }
+        } else if result is Section {
+            return sections[row]
+        } else {
+            return ""
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        if result is Camera {
+            return cameras.count
+        } else if result is Lens {
+            return lenses.count
+        } else if result is Length {
+            if component == 0 {
+                return length.count
+            } else if component == 1 {
+                return timeMetric.count
+            } else {
+                return 0
+            }
+        } else if result is Mood {
+            return mood.count
+        } else if result is Needed {
+            if component == 0 {
+                return needed.count
+            } else if component == 1 {
+                return shotsOrTakes.count
+            } else {
+                return 0
+            }
+        } else if result is Section {
+            return sections.count
+        } else {
+            return 0
+        }
+    }
+    
+    // MARK: - Used for time of shot.
+    var lengthTime = ""
+    var lengthTimeMetric = ""
+    
+    // MARK: - Used for needed
+    var numOfShots = ""
+    var shotType = ""
+    
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        if result is Camera {
+            
+            self.delegate?.valueDidChange(key: self.key, value: cameras[row])
+            self.pickerField.text = cameras[row]
+            
+        } else if result is Lens {
+            
+            self.delegate?.valueDidChange(key: self.key, value: lenses[row])
+            self.pickerField.text = lenses[row]
+            
+        } else if result is Length {
+            if component == 0 {
+                lengthTime = length[row]
+            } else if component == 1 {
+                lengthTimeMetric = timeMetric[row]
+            }
+            self.delegate?.valueDidChange(key: self.key, value: lengthTime + " " + lengthTimeMetric)
+            self.pickerField.text = lengthTime + " " + lengthTimeMetric
+            
+        } else if result is Mood {
+            
+            self.delegate?.valueDidChange(key: self.key, value: mood[row])
+            self.pickerField.text = mood[row]
+            
+        } else if result is Needed {
+            if component == 0 {
+                numOfShots = needed[row]
+            } else if component == 1 {
+                shotType = shotsOrTakes[row]
+            }
+            self.delegate?.valueDidChange(key: self.key, value: numOfShots + " " + shotType)
+            self.pickerField.text = numOfShots + " " + shotType
+            
+        } else if result is Section {
+            self.delegate?.valueDidChange(key: self.key, value: sections[row])
+            self.pickerField.text = sections[row]
+        }
     }
     
     func setupConstraints() {
         
         contentTextField.delegate = self
+        pickerView.delegate = self
+        pickerView.dataSource = self
         
         self.contentView.addSubview(titleLbl)
         titleLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +215,32 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
         titleLbl.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true
         titleLbl.heightAnchor.constraint(equalToConstant: 40).isActive = true
 
-        if result is String {
+        if result is Camera || result is Lens || result is Length || result is Mood || result is Needed || result is Section {
+            self.addSubview(pickerField)
+            pickerField.translatesAutoresizingMaskIntoConstraints = false
+            pickerField.leftAnchor.constraint(equalTo: self.contentView.leftAnchor, constant: 10).isActive = true
+            pickerField.rightAnchor.constraint(equalTo: self.contentView.rightAnchor, constant: -10).isActive = true
+            pickerField.topAnchor.constraint(equalTo: self.titleLbl.bottomAnchor, constant: 10).isActive = true
+            pickerField.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+            pickerField.heightAnchor.constraint(equalToConstant: 40).isActive = true
+            pickerField.addTarget(self, action: #selector(self.datePickerChanged(picker:)), for: .valueChanged)
+            pickerField.inputView = pickerView
+            
+            // MARK: -Done Button
+            let toolBar = UIToolbar()
+            toolBar.barStyle = UIBarStyle.default
+            toolBar.isTranslucent = true
+            toolBar.tintColor = UIColor(red: 76/255, green: 217/255, blue: 100/255, alpha: 1)
+            toolBar.sizeToFit()
+
+            let doneButton = UIBarButtonItem(title: "Done", style: UIBarButtonItem.Style.done, target: self, action: #selector(self.donePicker))
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            
+            toolBar.setItems([spaceButton, doneButton], animated: false)
+            pickerField.inputAccessoryView = toolBar
+            
+            
+        } else if result is String {
             self.addSubview(contentTextField)
             result = contentTextField.text
             contentTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -81,11 +261,12 @@ class TextFieldCell : UITableViewCell, UITextFieldDelegate {
         }
     }
 
-    
-    
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        self.delegate?.valueDidChange(key: self.key, value: textField.text ?? "")
+    }
+
     func textFieldDidEndEditing(_ textField: UITextField) {
-        self.delegate?.valueDidChange(key: self.key, value: textField.text)
-        print(textField.text)
+        self.delegate?.valueDidChange(key: self.key, value: textField.text ?? "")
     }
 
     @objc func datePickerChanged(picker: UIDatePicker) {

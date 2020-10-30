@@ -8,16 +8,24 @@
 import UIKit
 import FirebaseAuth
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
     // MARK: - Outlets
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
-    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        self.emailTextField.delegate = self
+        self.passwordTextField.delegate = self
         
         passwordTextField.isSecureTextEntry = true
         
@@ -58,7 +66,6 @@ class SignInViewController: UIViewController {
                 }
             }
         }
-        
     }
     
 
