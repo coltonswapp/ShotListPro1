@@ -8,10 +8,14 @@
 import Foundation
 import UIKit
 
-class ShotViewController : UITableViewController {
+class ShotViewController : UITableViewController, ShotCellDelegate {
+    func didSelect(shot: Shot) {
+        self.navigationController?.pushViewController(EditShotViewController(shot: shot), animated: true)
+    }
+    
     var currentProject : Project?
     @objc func addShot(sender: UIBarButtonItem) {
-        let vc =  ShotDetailsViewController()
+        let vc =  AddShotViewController()
         vc.currentProject = currentProject
         self.present(UINavigationController(rootViewController: vc), animated: true, completion: nil)
     }
@@ -51,7 +55,7 @@ class ShotViewController : UITableViewController {
             cell.shot = ShotController.sharedInstance.shots[currentProject?.projectID ?? ""]![indexPath.row]
         }
         cell.updateConstraints()
-        
+        cell.delegate = self
         return cell
     }
 

@@ -9,9 +9,11 @@ import UIKit
 
 class ShotCell: UITableViewCell {
     
-    var shot : Shot = Shot(shotTitle: "", shotIsComplete: false, shotNotes: "", cameraForShot: "", lensForShot: "", shotLength: "", shotMood: "", numOfShots: "", shotSection: "", shotID: "")
+    var shot : Shot = Shot(shotTitle: "", shotIsComplete: false, shotNotes: "", cameraForShot: "", lensForShot: "", shotLength: "", shotMood: "", numOfShots: "", shotSection: "", shotID: "", projectId: "")
     var projectId : String?
     var themeColor = UIColor(named: "grey")
+    var delegate: ShotCellDelegate?
+    
     
     var background: UIButton = {
         let view = UIButton()
@@ -75,8 +77,8 @@ class ShotCell: UITableViewCell {
         return label
     }()
     
-    var circle: UIView = {
-        var view = UIView()
+    var circle: UIButton = {
+        var view = UIButton()
         view.layer.cornerRadius = 15
         return view
     }()
@@ -104,6 +106,11 @@ class ShotCell: UITableViewCell {
         animateView(circle)
     }
     
+    @objc func moveToEditView() {
+        print(shot)
+        self.delegate?.didSelect(shot : shot)
+    }
+    
     // MARK: -Setup Constraints Shots View
     func setupConstraints() {
         shotTitleLbl.text = shot.shotTitle
@@ -114,13 +121,16 @@ class ShotCell: UITableViewCell {
         numOfShotsLbl.text = shot.shotsNeeded.string
         shotLengthLbl.text = shot.shotLength.string
         
+        
+        
+        background.addTarget(self, action: #selector(ShotCell.moveToEditView), for: .touchUpInside)
+        
         self.contentView.addSubview(background)
         background.translatesAutoresizingMaskIntoConstraints = false
         background.leadingAnchor.constraint(equalTo: self.contentView.leadingAnchor, constant: 10).isActive = true
         background.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 10).isActive = true
         background.trailingAnchor.constraint(equalTo: self.contentView.trailingAnchor, constant: -10).isActive = true
         background.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: -10).isActive = true
-        background.addTarget(self, action: #selector(ShotCell.select(sender:)), for: .touchUpInside)
         
         self.background.addSubview(shotTitleLbl)
         shotTitleLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -165,6 +175,7 @@ class ShotCell: UITableViewCell {
         circle.heightAnchor.constraint(equalToConstant: 30).isActive = true
         circle.widthAnchor.constraint(equalToConstant: 30).isActive = true
         self.circle.backgroundColor = self.shot.shotIsComplete ? UIColor(named: "green") : UIColor(named: "grey")
+        self.circle.addTarget(self, action: #selector(ShotCell.select(sender:)), for: .touchUpInside)
                
         self.background.addSubview(shotLengthLbl)
         shotLengthLbl.translatesAutoresizingMaskIntoConstraints = false
@@ -172,4 +183,8 @@ class ShotCell: UITableViewCell {
         shotLengthLbl.topAnchor.constraint(equalTo: background.topAnchor, constant: 10).isActive = true
         
     }
+}
+
+protocol ShotCellDelegate {
+    func didSelect(shot : Shot)
 }

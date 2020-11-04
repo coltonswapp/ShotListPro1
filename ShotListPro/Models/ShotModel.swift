@@ -38,11 +38,12 @@ class Shot {
     var shotSection = Section()
     
     //variable to ignore
-    var numberOfVariablesToIgnore = 3
+    var numberOfVariablesToIgnore = 4
     var shotIsComplete: Bool = false
     var shotID: String
+    var projectId: String
     
-    init(shotTitle: String, shotIsComplete: Bool = false, shotNotes: String, cameraForShot: String, lensForShot: String, shotLength: String, shotMood: String, numOfShots: String, shotSection: String, shotID: String = UUID().uuidString) {
+    init(shotTitle: String, shotIsComplete: Bool = false, shotNotes: String, cameraForShot: String, lensForShot: String, shotLength: String, shotMood: String, numOfShots: String, shotSection: String, shotID: String = UUID().uuidString, projectId: String) {
         
         self.shotTitle = shotTitle
         self.shotIsComplete = shotIsComplete
@@ -54,6 +55,7 @@ class Shot {
         self.shotsNeeded.string = numOfShots
         self.shotSection.string = shotSection
         self.shotID = shotID
+        self.projectId = projectId
     }
 }
 extension Shot: Equatable {

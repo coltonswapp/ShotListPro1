@@ -7,12 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D1BB9C1253FA3AE002EFC68 /* ShotDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C0253FA3AD002EFC68 /* ShotDetailsViewController.swift */; };
+		1D1BB9C1253FA3AE002EFC68 /* AddShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C0253FA3AD002EFC68 /* AddShotViewController.swift */; };
 		1D1BB9C4253FA3C2002EFC68 /* ProjectDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */; };
 		1D1BB9C7253FA3D0002EFC68 /* ShotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */; };
 		1D1BB9CA253FA40E002EFC68 /* AddProjectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */; };
 		1D1BB9CD253FA423002EFC68 /* TextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9CC253FA423002EFC68 /* TextFieldCell.swift */; };
 		1D1BB9D0253FA44E002EFC68 /* ProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */; };
+		1DFB555425507B2400D508D6 /* EditShotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DFB555325507B2400D508D6 /* EditShotViewController.swift */; };
 		74E174A0B688EFED81A025A2 /* Pods_ShotListPro.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BBA70D09507ECE8452EAEAC /* Pods_ShotListPro.framework */; };
 		7535C1CE2549E52700C4215C /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1CD2549E52700C4215C /* LoadingViewController.swift */; };
 		7535C1D12549E59300C4215C /* UserController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7535C1D02549E59300C4215C /* UserController.swift */; };
@@ -36,12 +37,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1D1BB9C0253FA3AD002EFC68 /* ShotDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotDetailsViewController.swift; sourceTree = "<group>"; };
+		1D1BB9C0253FA3AD002EFC68 /* AddShotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShotViewController.swift; sourceTree = "<group>"; };
 		1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectDetailsViewController.swift; sourceTree = "<group>"; };
 		1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotListViewController.swift; sourceTree = "<group>"; };
 		1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProjectViewController.swift; sourceTree = "<group>"; };
 		1D1BB9CC253FA423002EFC68 /* TextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCell.swift; sourceTree = "<group>"; };
 		1D1BB9CF253FA44E002EFC68 /* ProjectCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProjectCell.swift; sourceTree = "<group>"; };
+		1DFB555325507B2400D508D6 /* EditShotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditShotViewController.swift; sourceTree = "<group>"; };
 		3BBA70D09507ECE8452EAEAC /* Pods_ShotListPro.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShotListPro.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652DE8A38517DB6E6EED839C /* Pods-ShotListPro.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShotListPro.release.xcconfig"; path = "Target Support Files/Pods-ShotListPro/Pods-ShotListPro.release.xcconfig"; sourceTree = "<group>"; };
 		7535C1CD2549E52700C4215C /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
@@ -111,7 +113,8 @@
 			isa = PBXGroup;
 			children = (
 				75885057253DFDBF001EFD20 /* ViewController.swift */,
-				1D1BB9C0253FA3AD002EFC68 /* ShotDetailsViewController.swift */,
+				1D1BB9C0253FA3AD002EFC68 /* AddShotViewController.swift */,
+				1DFB555325507B2400D508D6 /* EditShotViewController.swift */,
 				1D1BB9C9253FA40E002EFC68 /* AddProjectViewController.swift */,
 				1D1BB9C3253FA3C2002EFC68 /* ProjectDetailsViewController.swift */,
 				1D1BB9C6253FA3D0002EFC68 /* ShotListViewController.swift */,
@@ -309,7 +312,7 @@
 				75885058253DFDBF001EFD20 /* ViewController.swift in Sources */,
 				7535C1CE2549E52700C4215C /* LoadingViewController.swift in Sources */,
 				7535C1DF254A26E400C4215C /* UIKitExtensions.swift in Sources */,
-				1D1BB9C1253FA3AE002EFC68 /* ShotDetailsViewController.swift in Sources */,
+				1D1BB9C1253FA3AE002EFC68 /* AddShotViewController.swift in Sources */,
 				1D1BB9C7253FA3D0002EFC68 /* ShotListViewController.swift in Sources */,
 				7535C1D12549E59300C4215C /* UserController.swift in Sources */,
 				7535C1D72549E96B00C4215C /* SignUpViewController.swift in Sources */,
@@ -323,6 +326,7 @@
 				7535C1D42549E95300C4215C /* SignInViewController.swift in Sources */,
 				1D1BB9C4253FA3C2002EFC68 /* ProjectDetailsViewController.swift in Sources */,
 				1D1BB9CD253FA423002EFC68 /* TextFieldCell.swift in Sources */,
+				1DFB555425507B2400D508D6 /* EditShotViewController.swift in Sources */,
 				7557EC3D2544ACE1008BEE53 /* ShotController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
