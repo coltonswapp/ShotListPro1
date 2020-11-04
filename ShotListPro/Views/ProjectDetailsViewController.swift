@@ -13,7 +13,6 @@ class ProjectDetailsViewController :  UITableViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    
     var project = Project(projectTitle: "", clientName: "", projectDeadline: Date(), projectColor: "", projectCreator: "", projectShots: 0, projectNotes: "")
     var elements : Mirror?
     var array = [Int : [String : Any]]()

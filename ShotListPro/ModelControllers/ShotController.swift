@@ -57,9 +57,10 @@ class ShotController {
                     let numOfShots = shotData["shotsNeeded"] as? String ?? ""
                     let shotSection = shotData["shotSection"] as? String ?? ""
                     let shotId = doc.documentID
+                    let projectId = projectId
 
                     
-                    let shot = Shot(shotTitle: shotTitle, shotIsComplete: shotIsComplete, shotNotes: shotNotes, cameraForShot: cameraForShot, lensForShot: lensForShot, shotLength: shotLength, shotMood: shotMood, numOfShots: numOfShots, shotSection: shotSection, shotID: shotId)
+                    let shot = Shot(shotTitle: shotTitle, shotIsComplete: shotIsComplete, shotNotes: shotNotes, cameraForShot: cameraForShot, lensForShot: lensForShot, shotLength: shotLength, shotMood: shotMood, numOfShots: numOfShots, shotSection: shotSection, shotID: shotId, projectId: projectId)
                     
                     if ShotController.sharedInstance.shots[projectId] != nil {
                         ShotController.sharedInstance.shots[projectId]!.append(shot)

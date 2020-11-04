@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseFirestore
-
+import FirebaseAuth
 class ProjectController {
     
     // MARK: - Shared Instance
@@ -26,12 +26,14 @@ class ProjectController {
         print(projectDict)
         var finalProject = projectDict
         finalProject["projectCreatedAt"] = Date()
+        finalProject["projectCreator"] = Auth.auth().currentUser?.uid
         db.collection("projects").addDocument(data: finalProject)
     }
     
     // FETCH PROJECTS -- For now, fetching all. Eventually, to fetch all projects whos' "projectCreator" field matches the current user's UserID. As well as all projects whos' "collaborators" array contains the currentUser's UserID.
     func fetchAllProjects(completion: @escaping (Bool) -> Void) {
-        db.collection("projects").order(by: "projectDeadline", descending: false).addSnapshotListener { (snapshot, error) in
+        print(Auth.auth().currentUser?.uid)
+        db.collection("projects").whereField("projectCreator", isEqualTo: Auth.auth().currentUser?.uid ?? "").order(by: "projectDeadline", descending: false).addSnapshotListener { (snapshot, error) in
             if let error = error {
                 print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 return completion(false)
